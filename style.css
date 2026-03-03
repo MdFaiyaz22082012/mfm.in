@@ -194,7 +194,7 @@ footer {
     100% { letter-spacing: 6px; opacity: 1; }
 }
 /* ============================= */
-/* Sharp Text Identity Loader */
+/* Cinematic Identity Loader */
 /* ============================= */
 
 #loader {
@@ -203,9 +203,12 @@ footer {
     height: 100%;
     background: #000;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     z-index: 9999;
+    overflow: hidden;
     transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 
@@ -215,24 +218,73 @@ footer {
 }
 
 .loader-text {
-    font-size: 80px;
+    font-size: 90px;
     font-weight: 900;
-    letter-spacing: 8px;
-    color: #c40000;
+    letter-spacing: 10px;
     font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
-    animation: sharpReveal 1.2s ease forwards;
-    transform: scaleY(1.2);
+
+    background: linear-gradient(to bottom, #ff1a1a 0%, #990000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    position: relative;
+    transform: scaleY(1.25);
+    animation: cinematicReveal 1.5s ease forwards;
 }
 
-@keyframes sharpReveal {
+/* Vertical energy streak effect */
+.loader-text::after {
+    content: "";
+    position: absolute;
+    top: -120%;
+    left: 50%;
+    width: 3px;
+    height: 300%;
+    background: rgba(255, 0, 0, 0.4);
+    transform: translateX(-50%);
+    animation: streak 1.2s ease forwards;
+}
+
+@keyframes cinematicReveal {
     0% {
-        letter-spacing: 25px;
+        letter-spacing: 40px;
         opacity: 0;
-        transform: scaleY(0.6);
+        transform: scaleY(0.5);
     }
     100% {
-        letter-spacing: 8px;
+        letter-spacing: 10px;
         opacity: 1;
-        transform: scaleY(1.2);
+        transform: scaleY(1.25);
     }
+}
+
+@keyframes streak {
+    0% {
+        opacity: 0;
+        top: -150%;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        top: 150%;
+        opacity: 0;
+    }
+}
+
+/* Experience button */
+
+.experience-btn {
+    margin-top: 40px;
+    padding: 12px 28px;
+    border: 1px solid #aa0000;
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: #aa0000;
+    transition: 0.3s ease;
+}
+
+.experience-btn:hover {
+    background: #aa0000;
+    color: black;
 }

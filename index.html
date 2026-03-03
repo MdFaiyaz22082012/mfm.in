@@ -5,8 +5,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="loader">
+<div id="loader" onclick="enterSite()">
     <h1 class="loader-text">FAIYAZ</h1>
+    <div class="experience-btn">EXPERIENCE</div>
     <audio id="introSound" src="intro.mp3"></audio>
 </div>
  <nav>
@@ -44,21 +45,15 @@
     © 2026 Muhammad Faiyaz
 </footer>
 <script>
-window.addEventListener("load", function() {
+function enterSite() {
 
     const sound = document.getElementById("introSound");
+    sound.play();
 
-    // Try playing sound
-    sound.play().catch(function(error) {
-        console.log("Autoplay blocked by browser.");
-    });
-
-    // Remove loader after 3 seconds
     setTimeout(function() {
         document.getElementById("loader").classList.add("fade-out");
     }, 3000);
-
-});
+}
 </script>
 </body>
 </html>
