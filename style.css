@@ -32,70 +32,28 @@ nav {
 /* WIDGET ALIGNMENT - THE FIX */
 .live-datetime-widget {
     display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important; /* THIS STOPS THE OVERLAP */
-    gap: 15px;
-    height: 100%;
-}
-
-#date-display {
-    font-family: monospace;
-    font-weight: bold;
-    color: #64748b;
+    align-items: center !important;
+    gap: 10px !important;
+    height: 40px !important; /* Forces a consistent height */
+    overflow: visible !important;
 }
 
 .time-display {
     display: flex !important;
     align-items: center !important;
-    background: #0f172a; /* Tech Black */
-    color: #38bdf8;    /* Cyber Blue */
-    padding: 5px 12px;
-    border-radius: 6px;
-    font-family: monospace;
-    height: 32px; /* Locked height */
+    background: #1a1a1a !important;
+    color: #00ff41 !important;
+    padding: 0 8px !important;
+    border-radius: 4px !important;
+    height: 28px !important;
+    font-family: 'Courier New', monospace !important;
 }
 
 .digit-box {
-    display: inline-block !important;
-    position: relative !important;
-    height: 1.2em !important;
+    display: block !important;
+    height: 28px !important; /* Match time-display height */
     width: 1ch !important;
     overflow: hidden !important;
-    line-height: 1.2em !important;
-    text-align: center;
+    line-height: 28px !important; /* Centers text vertically */
+    text-align: center !important;
 }
-
-.current-digit, .new-digit {
-    display: block !important;
-    height: 100% !important;
-    width: 100% !important;
-}
-
-/* REST OF YOUR THEME */
-.nav-links a {
-    text-decoration: none;
-    color: #333;
-    margin-left: 20px;
-    font-size: 14px;
-}
-
-.container {
-    max-width: 1100px;
-    margin: 60px auto;
-    padding: 20px;
-}
-
-.education-layout {
-    display: flex;
-    gap: 40px;
-    align-items: flex-start;
-}
-
-.school-image {
-    width: 250px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-h1 { font-size: 48px; margin-bottom: 10px; }
-.subtitle { color: #ef4444; font-weight: bold; margin-bottom: 20px; }
