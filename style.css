@@ -1,5 +1,5 @@
 /* ============================= */
-/* THE "MASTER" ALIGNMENT FIX    */
+/* IIT-LEVEL PRECISION UI        */
 /* ============================= */
 * {
     margin: 0;
@@ -10,7 +10,7 @@
 body {
     font-family: 'Segoe UI', system-ui, sans-serif;
     background: #f8fafc;
-    margin-top: 80px; /* Space for the fixed nav */
+    padding-top: 80px; 
 }
 
 /* NAVIGATION */
@@ -21,39 +21,100 @@ nav {
     width: 100%;
     height: 70px;
     padding: 0 40px;
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
     display: flex !important;
     justify-content: space-between !important;
-    align-items: center !important; /* Forces vertical center */
+    align-items: center !important;
     border-bottom: 1px solid #e2e8f0;
     z-index: 9999;
 }
 
-/* WIDGET ALIGNMENT - THE FIX */
+/* THE WIDGET ENGINE */
 .live-datetime-widget {
     display: flex !important;
     align-items: center !important;
-    gap: 10px !important;
-    height: 40px !important; /* Forces a consistent height */
-    overflow: visible !important;
+    gap: 12px !important;
 }
 
+.date-section {
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    color: #64748b;
+    font-size: 13px;
+    border-right: 1px solid #e2e8f0;
+    padding-right: 12px;
+}
+
+.time-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px;
+}
+
+.label {
+    font-size: 10px;
+    font-weight: 800;
+    color: #94a3b8;
+    letter-spacing: 1px;
+}
+
+/* THE TIME PILL */
 .time-display {
     display: flex !important;
     align-items: center !important;
-    background: #1a1a1a !important;
-    color: #00ff41 !important;
-    padding: 0 8px !important;
-    border-radius: 4px !important;
-    height: 28px !important;
-    font-family: 'Courier New', monospace !important;
+    background: #0f172a !important; /* Deep Slate Tech */
+    padding: 0 10px !important;
+    border-radius: 5px !important;
+    height: 32px !important; /* Fixed outer boundary */
 }
 
 .digit-box {
     display: block !important;
-    height: 28px !important; /* Match time-display height */
+    position: relative !important;
+    height: 32px !important; 
     width: 1ch !important;
     overflow: hidden !important;
-    line-height: 28px !important; /* Centers text vertically */
+    line-height: 32px !important; 
     text-align: center !important;
+    font-family: 'Courier New', monospace !important;
+    font-weight: 900;
+    color: #38bdf8; /* Cyber Blue */
 }
+
+/* PREVENTS OVERLAP */
+.current-digit, .new-digit {
+    display: block !important;
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    left: 0;
+    transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.current-digit { top: 0; }
+.new-digit { top: -100%; }
+
+.separator {
+    color: #475569;
+    font-weight: bold;
+    margin: 0 1px;
+    line-height: 32px;
+}
+
+/* THE SECONDS CLOCK */
+#s0, #s1 {
+    color: #f43f5e !important; /* Tech Red for Seconds */
+}
+
+/* NAV LINKS */
+.nav-links a {
+    text-decoration: none;
+    color: #334155;
+    margin-left: 25px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.nav-links a:hover { color: #f43f5e; }

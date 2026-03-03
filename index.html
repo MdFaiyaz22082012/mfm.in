@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css?v=1.1">
-    <title>Md. Faiyaz</title>
+    <link rel="stylesheet" href="style.css?v=1.2"> <title>Md. Faiyaz</title>
 </head>
 <body>
 
@@ -17,14 +16,21 @@
 
     <nav>
         <div class="live-datetime-widget">
-    <div class="date-section" id="date-display">04-03-2026</div>
-    <div class="time-wrapper">
-        <span class="label">TIME</span>
-        <div class="time-display">
-            <span class="digit-box" id="h0"><span class="current-digit">0</span></span><span class="digit-box" id="h1"><span class="current-digit">0</span></span><span class="separator">:</span><span class="digit-box" id="m0"><span class="current-digit">0</span></span><span class="digit-box" id="m1"><span class="current-digit">0</span></span><span class="separator">:</span><span class="digit-box" id="s0"><span class="current-digit">0</span></span><span class="digit-box" id="s1"><span class="current-digit">0</span></span>
+            <div class="date-section" id="date-display">04-03-2026</div>
+            <div class="time-wrapper">
+                <span class="label">TIME</span>
+                <div class="time-display">
+                    <span class="digit-box" id="h0"><span class="current-digit">0</span></span>
+                    <span class="digit-box" id="h1"><span class="current-digit">0</span></span>
+                    <span class="separator">:</span>
+                    <span class="digit-box" id="m0"><span class="current-digit">0</span></span>
+                    <span class="digit-box" id="m1"><span class="current-digit">0</span></span>
+                    <span class="separator">:</span>
+                    <span class="digit-box" id="s0"><span class="current-digit">0</span></span>
+                    <span class="digit-box" id="s1"><span class="current-digit">0</span></span>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
@@ -39,12 +45,10 @@
         <div class="education-layout">
             <img src="profile.jpeg" alt="Muhammad Faiyaz Mia" class="school-image">
 
-            <div>
+            <div class="bio-text">
                 <h1>Muhammad Faiyaz</h1>
                 <div class="subtitle">Class IX Student — Calcutta, India</div>
-
                 <p><em>Building foundations in science, systems, and long-term thinking.</em></p>
-
                 <p>
                     I am a 14-year-old student focused on developing strong academic 
                     foundations in science and analytical reasoning. My long-term 
@@ -60,21 +64,17 @@
     </footer>
 
     <script>
-        // --- Loader Logic ---
         function enterSite() {
             const sound = document.getElementById("introSound");
             if (sound) sound.play();
-
-            setTimeout(function() {
+            setTimeout(() => {
                 document.getElementById("loader").classList.add("fade-out");
-            }, 3000);
+            }, 300); // Shorter delay for a snappier tech feel
         }
 
-        // --- Live Clock Animation Logic ---
         function animateDigit(id, newValue) {
             const container = document.getElementById(id);
-            if (!container) return; // Failsafe
-            
+            if (!container) return;
             const current = container.querySelector('.current-digit');
             
             if (current && current.innerText !== newValue) {
@@ -82,48 +82,39 @@
                 newDigit.className = 'new-digit';
                 newDigit.innerText = newValue;
                 
-                newDigit.style.transition = 'top 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
-                current.style.transition = 'top 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
-                
                 container.appendChild(newDigit);
-                
-                void container.offsetWidth; // Force browser to register positioning
+                void container.offsetWidth; 
                 
                 newDigit.style.top = '0';
                 current.style.top = '100%'; 
                 
                 setTimeout(() => {
-                    if(current) current.remove();
+                    current.remove();
                     newDigit.className = 'current-digit';
                     newDigit.style.position = 'relative';
-                    newDigit.style.transition = '';
                 }, 400);
             }
         }
 
-        // --- Live Clock Updater Logic ---
         function updateClock() {
             const now = new Date();
-            
-            // Format Date
             const dd = String(now.getDate()).padStart(2, '0');
             const mm = String(now.getMonth() + 1).padStart(2, '0');
             const yyyy = now.getFullYear();
-            const dateDisplay = document.getElementById('date-display');
-            if(dateDisplay) dateDisplay.innerText = `${dd}-${mm}-${yyyy}`;
+            document.getElementById('date-display').innerText = `${dd}-${mm}-${yyyy}`;
             
-            // Format Time
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
             
-            // Animate Digits
-            animateDigit('h0', hours[0]);
-            animateDigit('h1', hours[1]);
-            animateDigit('m0', minutes[0]);
-            animateDigit('m1', minutes[1]);
+            animateDigit('h0', h[0]);
+            animateDigit('h1', h[1]);
+            animateDigit('m0', m[0]);
+            animateDigit('m1', m[1]);
+            animateDigit('s0', s[0]);
+            animateDigit('s1', s[1]);
         }
 
-        // Run the clock functions
         updateClock();
         setInterval(updateClock, 1000);
     </script>
