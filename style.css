@@ -1,5 +1,5 @@
 /* ============================= */
-/* RESET */
+/* RESET & BASE */
 /* ============================= */
 * {
     margin: 0;
@@ -7,171 +7,136 @@
     box-sizing: border-box;
 }
 
-/* ============================= */
-/* PREMIUM LIGHT-TECH THEME */
-/* ============================= */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to bottom, #f4f6f9, #e9edf3);
-    color: #1a1a1a;
-    line-height: 1.7;
-    overflow-x: hidden;
-}
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle at 80% 20%, rgba(0,0,0,0.03), transparent 40%);
-    z-index: -1;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+    line-height: 1.6;
 }
 
 /* ============================= */
-/* NAVIGATION */
+/* NAVIGATION & TECH WIDGET */
 /* ============================= */
 nav {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 15px 60px;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid #e0e0e0;
+    padding: 15px 40px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e2e8f0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
 }
 
-.nav-links {
-    display: flex;
-    align-items: center;
-}
-
 .nav-links a {
     text-decoration: none;
-    color: #444;
-    margin-left: 30px;
+    color: #64748b;
+    margin-left: 25px;
     font-size: 13px;
     font-weight: 500;
-    letter-spacing: 0.5px;
-    transition: 0.3s ease;
+    transition: 0.2s;
 }
 
-.nav-links a:hover {
-    color: #c40000;
-}
+.nav-links a:hover { color: #ef4444; }
 
-/* ============================= */
-/* IIT-STYLE TECH DATETIME WIDGET */
-/* ============================= */
+/* THE WIDGET FIX */
 .live-datetime-widget {
     display: flex;
     align-items: center;
-    font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; /* Professional tech font */
-    font-size: 13px;
-    gap: 15px;
+    gap: 12px;
+    font-family: 'SF Mono', 'Fira Code', monospace; /* Engineering feel */
 }
 
 #date-display {
-    color: #666;
-    font-weight: 500;
-    padding-right: 15px;
-    border-right: 1px solid #ddd;
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 600;
 }
 
 .time-display {
-    background: #1a1a1a; /* Dark tech pill */
-    color: #00ff41; /* Subtle matrix green or use white #fff */
-    padding: 4px 10px;
-    border-radius: 5px;
     display: flex;
     align-items: center;
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+    background: #0f172a; /* Deep Slate Tech Theme */
+    color: #38bdf8;    /* Cyber Blue text */
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .digit-box {
-    display: inline-block;
+    display: block;
     position: relative;
     height: 1.2em;
     width: 1ch;
     overflow: hidden;
-    line-height: 1.2em;
-    text-align: center;
+    line-height: 1.2em; /* CRITICAL FIX: Matches height exactly */
 }
 
-.current-digit, .new-digit {
+.current-digit {
     display: block;
     width: 100%;
     height: 100%;
+    position: relative;
 }
 
-/* Fixes the colon alignment */
-.time-display span:not(.digit-box):not(.current-digit):not(.new-digit) {
-    margin: 0 1px;
-    position: relative;
-    top: -1px; /* Optical adjustment */
+.new-digit {
+    display: block;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: -100%;
 }
 
 /* ============================= */
-/* CONTAINER & LAYOUT */
+/* MAIN CONTENT & PANELS */
 /* ============================= */
 .container {
-    width: 85%;
-    max-width: 1100px;
-    margin: 120px auto 60px auto;
+    max-width: 1000px;
+    margin: 120px auto;
+    padding: 0 20px;
 }
 
 .education-layout {
     display: flex;
-    gap: 50px;
+    gap: 40px;
     align-items: center;
 }
 
-/* ============================= */
-/* TYPOGRAPHY */
-/* ============================= */
+.school-image {
+    width: 240px;
+    height: 240px;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
 h1 {
-    font-size: 48px;
+    font-size: 42px;
     font-weight: 800;
-    margin-bottom: 10px;
-    letter-spacing: -1px;
+    color: #0f172a;
+    letter-spacing: -0.02em;
 }
 
 .subtitle {
-    font-size: 18px;
-    color: #c40000;
-    margin-bottom: 25px;
-    font-weight: 600;
+    color: #ef4444;
+    font-weight: 700;
+    margin-bottom: 20px;
     text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-p {
-    font-size: 17px;
-    color: #444;
-    max-width: 700px;
+    font-size: 14px;
+    letter-spacing: 0.05em;
 }
 
 /* ============================= */
-/* PROFILE IMAGE */
-/* ============================= */
-.school-image {
-    width: 250px;
-    height: 250px;
-    border-radius: 24px;
-    object-fit: cover;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    border: 4px solid white;
-}
-
-/* ============================= */
-/* CINEMATIC LOADER */
+/* LOADER */
 /* ============================= */
 #loader {
     position: fixed;
     inset: 0;
-    background: #000;
+    background: #020617;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -180,17 +145,15 @@ p {
 }
 
 .loader-text {
-    font-size: clamp(40px, 10vw, 90px);
+    font-size: 80px;
     font-weight: 900;
-    background: linear-gradient(to bottom, #ff3333, #800000);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #fff;
+    letter-spacing: 10px;
 }
 
 footer {
     text-align: center;
-    padding: 60px 0;
-    color: #aaa;
+    padding: 40px;
+    color: #94a3b8;
     font-size: 12px;
-    letter-spacing: 2px;
 }
