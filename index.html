@@ -6,13 +6,10 @@
 </head>
 <body>
 <div id="loader">
-    <div class="loader-content">
-        <div class="circle circle-left"></div>
-        <div class="circle circle-right"></div>
-        <h1 class="loader-text">FAIYAZ</h1>
-    </div>
+    <h1 class="loader-text">FAIYAZ</h1>
+    <audio id="introSound" src="intro.mp3"></audio>
 </div>
-<nav>
+ <nav>
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="education.html">Education</a>
@@ -48,9 +45,19 @@
 </footer>
 <script>
 window.addEventListener("load", function() {
+
+    const sound = document.getElementById("introSound");
+
+    // Try playing sound
+    sound.play().catch(function(error) {
+        console.log("Autoplay blocked by browser.");
+    });
+
+    // Remove loader after 3 seconds
     setTimeout(function() {
         document.getElementById("loader").classList.add("fade-out");
-    }, 2200);
+    }, 3000);
+
 });
 </script>
 </body>
