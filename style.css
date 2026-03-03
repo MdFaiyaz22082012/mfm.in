@@ -61,3 +61,140 @@ nav a:hover {
     color: #c40000;
 }
 
+/* ============================= */
+/* CONTAINER */
+/* ============================= */
+
+.container {
+    width: 85%;
+    max-width: 1100px;
+    margin: 140px auto 80px auto; /* push below fixed nav */
+}
+
+/* ============================= */
+/* ADVANCED PANELS */
+/* ============================= */
+
+.tech-panel {
+    background: white;
+    padding: 50px;
+    margin-bottom: 60px;
+    border-radius: 14px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+    transition: 0.4s ease;
+}
+
+.tech-panel:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+}
+
+/* ============================= */
+/* TYPOGRAPHY */
+/* ============================= */
+
+h1 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #c40000;
+}
+
+h3 {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    color: #555;
+}
+
+ul {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+/* ============================= */
+/* PROFILE IMAGE */
+/* ============================= */
+
+.school-image {
+    width: 220px;
+    height: 220px;
+    border-radius: 18px;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* ============================= */
+/* FOOTER */
+/* ============================= */
+
+footer {
+    text-align: center;
+    padding: 40px;
+    color: #888;
+    font-size: 14px;
+    margin-top: 40px;
+}
+
+/* ============================= */
+/* CINEMATIC LOADER */
+/* ============================= */
+
+#loader {
+    position: fixed;
+    inset: 0;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 9999;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#loader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-text {
+    font-size: 90px;
+    font-weight: 900;
+    letter-spacing: 10px;
+    font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
+    background: linear-gradient(to bottom, #ff1a1a, #990000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: reveal 1.4s ease forwards;
+}
+
+@keyframes reveal {
+    0% { letter-spacing: 40px; opacity: 0; }
+    100% { letter-spacing: 10px; opacity: 1; }
+}
+
+.experience-btn {
+    margin-top: 40px;
+    padding: 12px 30px;
+    border: 1px solid #ff1a1a;
+    letter-spacing: 4px;
+    font-size: 13px;
+    color: #ff1a1a;
+    transition: 0.3s ease;
+}
+
+.experience-btn:hover {
+    background: #ff1a1a;
+    color: white;
+}
