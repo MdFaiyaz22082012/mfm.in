@@ -117,19 +117,20 @@ footer {
 }
 
 /* ============================= */
-/* Futuristic Loader Animation  */
+/* Advanced Identity Loader */
 /* ============================= */
 
 #loader {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: #0d0d0d;
+    background: #0b0b0b;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    transition: opacity 0.8s ease, visibility 0.8s ease;
+    overflow: hidden;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 
 #loader.fade-out {
@@ -137,51 +138,58 @@ footer {
     visibility: hidden;
 }
 
-.loader-circle {
-    width: 150px;
+.loader-content {
+    position: relative;
+    width: 400px;
     height: 150px;
-    border: 2px solid #333;
-    border-top: 2px solid #00bcd4;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: spin 1.6s linear infinite;
 }
 
-.loader-circle span {
+.loader-text {
     position: absolute;
-    color: #00bcd4;
-    font-size: 18px;
-    letter-spacing: 3px;
-    font-weight: 500;
+    width: 100%;
+    text-align: center;
+    font-size: 64px;
+    font-weight: 900;
+    letter-spacing: 6px;
+    color: #c40000;
+    font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
+    animation: textReveal 1.2s ease forwards;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+.circle {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    opacity: 0.85;
+    mix-blend-mode: screen;
 }
 
-/* ============================= */
-/* Responsive Design            */
-/* ============================= */
+.circle-left {
+    background: #c40000;
+    left: 80px;
+    animation: slideLeft 1.2s ease forwards;
+}
 
-@media (max-width: 768px) {
+.circle-right {
+    background: #ff2a2a;
+    right: 80px;
+    animation: slideRight 1.2s ease forwards;
+}
 
-    .education-layout {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
+/* Animations */
 
-    .school-image {
-        width: 180px;
-        height: 180px;
-        margin-bottom: 20px;
-    }
+@keyframes slideLeft {
+    0% { transform: translateX(-120px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 0.85; }
+}
 
-    nav a {
-        display: block;
-        margin: 10px 0;
-    }
+@keyframes slideRight {
+    0% { transform: translateX(120px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 0.85; }
+}
+
+@keyframes textReveal {
+    0% { letter-spacing: 20px; opacity: 0; }
+    100% { letter-spacing: 6px; opacity: 1; }
 }
