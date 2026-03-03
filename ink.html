@@ -5,7 +5,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<div id="loader">
+    <div class="loader-circle">
+        <span>FAI~YAZ</span>
+    </div>
+</div>
 <nav>
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -60,6 +64,12 @@
 <footer>
     © 2026 Muhammad Faiyaz
 </footer>
-
+<script>
+window.addEventListener("load", function() {
+    setTimeout(function() {
+        document.getElementById("loader").classList.add("fade-out");
+    }, 1500);
+});
+</script>
 </body>
 </html>
