@@ -1,0 +1,246 @@
+/* ============================= */
+/* RESET */
+/* ============================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============================= */
+/* PREMIUM LIGHT-TECH THEME */
+/* ============================= */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, #f4f6f9, #e9edf3);
+    color: #1a1a1a;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(0,0,0,0.03), transparent 40%);
+    z-index: -1;
+}
+
+/* ============================= */
+/* NAVIGATION */
+/* ============================= */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 18px 60px;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Wrapper for the links to separate them from the clock */
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 30px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #c40000;
+}
+
+/* ============================= */
+/* LIVE DATE & TIME WIDGET */
+/* ============================= */
+.live-datetime-widget {
+    font-family: inherit; 
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+}
+
+.digit-box {
+    display: inline-block;
+    position: relative;
+    height: 1.2em; 
+    width: 1ch; 
+    overflow: hidden;
+    vertical-align: bottom;
+    text-align: center;
+}
+
+.current-digit {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    top: 0;
+}
+
+.new-digit {
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: -100%; 
+}
+
+/* ============================= */
+/* CONTAINER & LAYOUT */
+/* ============================= */
+.container {
+    width: 85%;
+    max-width: 1100px;
+    margin: 140px auto 80px auto; 
+}
+
+.education-layout {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+/* ============================= */
+/* ADVANCED PANELS */
+/* ============================= */
+.tech-panel {
+    background: white;
+    padding: 50px;
+    margin-bottom: 60px;
+    border-radius: 14px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+    transition: 0.4s ease;
+}
+
+.tech-panel:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+}
+
+/* ============================= */
+/* TYPOGRAPHY */
+/* ============================= */
+h1 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #c40000;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #c40000;
+}
+
+h3 {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+ul {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+/* ============================= */
+/* PROFILE IMAGE */
+/* ============================= */
+.school-image {
+    width: 220px;
+    height: 220px;
+    border-radius: 18px;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* ============================= */
+/* FOOTER */
+/* ============================= */
+footer {
+    text-align: center;
+    padding: 40px;
+    color: #888;
+    font-size: 14px;
+    margin-top: 40px;
+}
+
+/* ============================= */
+/* CINEMATIC LOADER */
+/* ============================= */
+#loader {
+    position: fixed;
+    inset: 0;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 9999;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#loader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-text {
+    font-size: 90px;
+    font-weight: 900;
+    letter-spacing: 10px;
+    font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
+    background: linear-gradient(to bottom, #ff1a1a, #990000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: reveal 1.4s ease forwards;
+}
+
+@keyframes reveal {
+    0% { letter-spacing: 40px; opacity: 0; }
+    100% { letter-spacing: 10px; opacity: 1; }
+}
+
+.experience-btn {
+    margin-top: 40px;
+    padding: 12px 30px;
+    border: 1px solid #ff1a1a;
+    letter-spacing: 4px;
+    font-size: 13px;
+    color: #ff1a1a;
+    transition: 0.3s ease;
+}
+
+.experience-btn:hover {
+    background: #ff1a1a;
+    color: white;
+}

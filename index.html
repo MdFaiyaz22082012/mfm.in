@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <title>Md. Faiyaz</title>
+</head>
+<body>
+
+    <div id="loader" onclick="enterSite()">
+        <h1 class="loader-text">FAIYAZ</h1>
+        <div class="experience-btn">EXPERIENCE</div>
+        <audio id="introSound" src="intro.mp3"></audio>
+    </div>
+
+    <nav>
+        <div class="live-datetime-widget">
+            <span id="date-display"></span>
+            <span style="margin-left: 15px;">Time: </span>
+            <span class="time-display">
+                <span class="digit-box" id="h0"><span class="current-digit">0</span></span><span class="digit-box" id="h1"><span class="current-digit">0</span></span>:<span class="digit-box" id="m0"><span class="current-digit">0</span></span><span class="digit-box" id="m1"><span class="current-digit">0</span></span>
+            </span>
+        </div>
+        
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="education.html">Education</a>
+            <a href="career.html">Career</a>
+            <a href="ink.html">Ink & Intellect</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="education-layout">
+            <img src="profile.jpeg" alt="Muhammad Faiyaz Mia" class="school-image">
+
+            <div>
+                <h1>Muhammad Faiyaz</h1>
+                <div class="subtitle">Class IX Student — Calcutta, India</div>
+
+                <p><em>Building foundations in science, systems, and long-term thinking.</em></p>
+
+                <p>
+                    I am a 14-year-old student focused on developing strong academic 
+                    foundations in science and analytical reasoning. My long-term 
+                    direction lies in advanced technological and biological systems, 
+                    with interests spanning robotics, artificial intelligence, and biotechnology.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 Muhammad Faiyaz
+    </footer>
+
+    <script>
+        // --- Loader Logic ---
+        function enterSite() {
+            const sound = document.getElementById("introSound");
+            if (sound) sound.play();
+
+            setTimeout(function() {
+                document.getElementById("loader").classList.add("fade-out");
+            }, 3000);
+        }
+
+        // --- Live Clock Animation Logic ---
+        function animateDigit(id, newValue) {
+            const container = document.getElementById(id);
+            if (!container) return; // Failsafe
+            
+            const current = container.querySelector('.current-digit');
+            
+            if (current && current.innerText !== newValue) {
+                const newDigit = document.createElement('span');
+                newDigit.className = 'new-digit';
+                newDigit.innerText = newValue;
+                
+                newDigit.style.transition = 'top 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+                current.style.transition = 'top 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+                
+                container.appendChild(newDigit);
+                
+                void container.offsetWidth; // Force browser to register positioning
+                
+                newDigit.style.top = '0';
+                current.style.top = '100%'; 
+                
+                setTimeout(() => {
+                    if(current) current.remove();
+                    newDigit.className = 'current-digit';
+                    newDigit.style.position = 'relative';
+                    newDigit.style.transition = '';
+                }, 400);
+            }
+        }
+
+        // --- Live Clock Updater Logic ---
+        function updateClock() {
+            const now = new Date();
+            
+            // Format Date
+            const dd = String(now.getDate()).padStart(2, '0');
+            const mm = String(now.getMonth() + 1).padStart(2, '0');
+            const yyyy = now.getFullYear();
+            const dateDisplay = document.getElementById('date-display');
+            if(dateDisplay) dateDisplay.innerText = `${dd}-${mm}-${yyyy}`;
+            
+            // Format Time
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            
+            // Animate Digits
+            animateDigit('h0', hours[0]);
+            animateDigit('h1', hours[1]);
+            animateDigit('m0', minutes[0]);
+            animateDigit('m1', minutes[1]);
+        }
+
+        // Run the clock functions
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
