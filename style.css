@@ -1,7 +1,6 @@
 /* ============================= */
 /* RESET */
 /* ============================= */
-
 * {
     margin: 0;
     padding: 0;
@@ -11,16 +10,13 @@
 /* ============================= */
 /* PREMIUM LIGHT-TECH THEME */
 /* ============================= */
-
 body {
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(to bottom, #f4f6f9, #e9edf3);
     color: #1a1a1a;
     line-height: 1.7;
     overflow-x: hidden;
 }
-
-/* Subtle tech glow background layer */
 
 body::before {
     content: "";
@@ -33,14 +29,13 @@ body::before {
 /* ============================= */
 /* NAVIGATION */
 /* ============================= */
-
 nav {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 18px 60px;
+    padding: 15px 60px;
     background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid #e0e0e0;
     display: flex;
     justify-content: space-between;
@@ -48,185 +43,154 @@ nav {
     z-index: 1000;
 }
 
-nav a {
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
     text-decoration: none;
-    color: #333;
+    color: #444;
     margin-left: 30px;
-    font-size: 14px;
-    letter-spacing: 1px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
     transition: 0.3s ease;
 }
 
-nav a:hover {
+.nav-links a:hover {
     color: #c40000;
 }
 
 /* ============================= */
-/* CONTAINER */
+/* IIT-STYLE TECH DATETIME WIDGET */
 /* ============================= */
+.live-datetime-widget {
+    display: flex;
+    align-items: center;
+    font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; /* Professional tech font */
+    font-size: 13px;
+    gap: 15px;
+}
 
+#date-display {
+    color: #666;
+    font-weight: 500;
+    padding-right: 15px;
+    border-right: 1px solid #ddd;
+}
+
+.time-display {
+    background: #1a1a1a; /* Dark tech pill */
+    color: #00ff41; /* Subtle matrix green or use white #fff */
+    padding: 4px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+}
+
+.digit-box {
+    display: inline-block;
+    position: relative;
+    height: 1.2em;
+    width: 1ch;
+    overflow: hidden;
+    line-height: 1.2em;
+    text-align: center;
+}
+
+.current-digit, .new-digit {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Fixes the colon alignment */
+.time-display span:not(.digit-box):not(.current-digit):not(.new-digit) {
+    margin: 0 1px;
+    position: relative;
+    top: -1px; /* Optical adjustment */
+}
+
+/* ============================= */
+/* CONTAINER & LAYOUT */
+/* ============================= */
 .container {
     width: 85%;
     max-width: 1100px;
-    margin: 140px auto 80px auto; /* push below fixed nav */
+    margin: 120px auto 60px auto;
 }
 
-/* ============================= */
-/* ADVANCED PANELS */
-/* ============================= */
-
-.tech-panel {
-    background: white;
-    padding: 50px;
-    margin-bottom: 60px;
-    border-radius: 14px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
-    transition: 0.4s ease;
-}
-
-.tech-panel:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+.education-layout {
+    display: flex;
+    gap: 50px;
+    align-items: center;
 }
 
 /* ============================= */
 /* TYPOGRAPHY */
 /* ============================= */
-
 h1 {
-    font-size: 42px;
-    font-weight: 700;
-    margin-bottom: 15px;
-    letter-spacing: 2px;
-}
-
-h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #c40000;
-}
-
-h3 {
-    font-size: 18px;
-    margin-top: 20px;
+    font-size: 48px;
+    font-weight: 800;
     margin-bottom: 10px;
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #c40000;
+    margin-bottom: 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 p {
-    font-size: 16px;
-    color: #555;
-}
-
-ul {
-    margin-left: 20px;
-    margin-top: 10px;
+    font-size: 17px;
+    color: #444;
+    max-width: 700px;
 }
 
 /* ============================= */
 /* PROFILE IMAGE */
 /* ============================= */
-
 .school-image {
-    width: 220px;
-    height: 220px;
-    border-radius: 18px;
+    width: 250px;
+    height: 250px;
+    border-radius: 24px;
     object-fit: cover;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-/* ============================= */
-/* FOOTER */
-/* ============================= */
-
-footer {
-    text-align: center;
-    padding: 40px;
-    color: #888;
-    font-size: 14px;
-    margin-top: 40px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border: 4px solid white;
 }
 
 /* ============================= */
 /* CINEMATIC LOADER */
 /* ============================= */
-
 #loader {
     position: fixed;
     inset: 0;
-    background: black;
+    background: #000;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
     z-index: 9999;
-    transition: opacity 0.6s ease, visibility 0.6s ease;
-}
-
-#loader.fade-out {
-    opacity: 0;
-    visibility: hidden;
 }
 
 .loader-text {
-    font-size: 90px;
+    font-size: clamp(40px, 10vw, 90px);
     font-weight: 900;
-    letter-spacing: 10px;
-    font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
-    background: linear-gradient(to bottom, #ff1a1a, #990000);
+    background: linear-gradient(to bottom, #ff3333, #800000);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: reveal 1.4s ease forwards;
 }
 
-@keyframes reveal {
-    0% { letter-spacing: 40px; opacity: 0; }
-    100% { letter-spacing: 10px; opacity: 1; }
-}
-
-.experience-btn {
-    margin-top: 40px;
-    padding: 12px 30px;
-    border: 1px solid #ff1a1a;
-    letter-spacing: 4px;
-    font-size: 13px;
-    color: #ff1a1a;
-    transition: 0.3s ease;
-}
-
-.experience-btn:hover {
-    background: #ff1a1a;
-    color: white;
-}
-/* Inherits your existing font styles automatically */
-.live-datetime-widget {
-  font-family: inherit; 
-  display: inline-flex;
-  align-items: center;
-}
-
-/* The container for each individual digit */
-.digit-box {
-  display: inline-block;
-  position: relative;
-  height: 1.2em; /* Adjust if your font gets cut off */
-  width: 1ch; /* Exactly the width of one character */
-  overflow: hidden;
-  vertical-align: bottom;
-  text-align: center;
-}
-
-.current-digit {
-  display: inline-block;
-  position: relative;
-  width: 100%;
-  top: 0;
-}
-
-.new-digit {
-  display: inline-block;
-  position: absolute;
-  width: 100%;
-  left: 0;
-  top: -100%; /* Starts above the current digit */
+footer {
+    text-align: center;
+    padding: 60px 0;
+    color: #aaa;
+    font-size: 12px;
+    letter-spacing: 2px;
 }
