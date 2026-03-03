@@ -198,3 +198,35 @@ footer {
     background: #ff1a1a;
     color: white;
 }
+/* Inherits your existing font styles automatically */
+.live-datetime-widget {
+  font-family: inherit; 
+  display: inline-flex;
+  align-items: center;
+}
+
+/* The container for each individual digit */
+.digit-box {
+  display: inline-block;
+  position: relative;
+  height: 1.2em; /* Adjust if your font gets cut off */
+  width: 1ch; /* Exactly the width of one character */
+  overflow: hidden;
+  vertical-align: bottom;
+  text-align: center;
+}
+
+.current-digit {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  top: 0;
+}
+
+.new-digit {
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: -100%; /* Starts above the current digit */
+}
