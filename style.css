@@ -1,50 +1,53 @@
-/* ===== NAV CLOCK SYSTEM ===== */
+/* ===== NAV CLOCK SYSTEM - STABLE VERSION ===== */
 
 .time-display {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 2px;
+    gap: 4px;
 
     background: #0f172a;
-    padding: 0 14px;
-    height: 34px;
-
+    padding: 0 16px;
+    height: 32px;               /* MATCH digit height */
     border-radius: 6px;
+
     box-shadow:
         inset 0 0 8px rgba(56,189,248,0.15),
         0 0 6px rgba(0,0,0,0.4);
 
     font-family: 'Courier New', monospace;
+    font-size: 15px;
+    font-weight: 900;
 }
 
+/* FIXED HEIGHT SYSTEM */
 .digit-box {
     position: relative;
-    height: 20px;
-    width: 1ch;
+    width: 12px;               /* Fixed width, not 1ch */
+    height: 32px;              /* EXACT SAME as parent */
     overflow: hidden;
+}
+
+/* DIGITS */
+.digit {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 32px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    font-size: 15px;
-    font-weight: 900;
+    transition: transform 0.35s ease, opacity 0.35s ease;
     color: #38bdf8;
 }
 
-.digit {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    transition: transform 0.35s ease, opacity 0.35s ease;
-}
-
 .colon {
-    font-weight: 900;
-    font-size: 15px;
+    display: flex;
+    align-items: center;
+    height: 32px;
     color: #64748b;
-    margin: 0 2px;
 }
 
 .seconds-digit {
