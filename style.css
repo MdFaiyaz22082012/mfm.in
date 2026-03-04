@@ -1,55 +1,86 @@
-/* ===== NAV CLOCK SYSTEM - STABLE VERSION ===== */
+/* ================= ANALOG CLOCK SYSTEM ================= */
 
-.time-display {
+.live-datetime-widget {
     display: flex;
     align-items: center;
-    gap: 4px;
-
-    background: #0f172a;
-    padding: 0 16px;
-    height: 32px;               /* MATCH digit height */
-    border-radius: 6px;
-
-    box-shadow:
-        inset 0 0 8px rgba(56,189,248,0.15),
-        0 0 6px rgba(0,0,0,0.4);
-
-    font-family: 'Courier New', monospace;
-    font-size: 15px;
-    font-weight: 900;
+    gap: 18px;
 }
 
-/* FIXED HEIGHT SYSTEM */
-.digit-box {
+/* CLOCK FACE */
+.analog-clock {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, #0f172a 60%, #1e293b);
+    border: 3px solid #38bdf8;
     position: relative;
-    width: 12px;               /* Fixed width, not 1ch */
-    height: 32px;              /* EXACT SAME as parent */
-    overflow: hidden;
+    box-shadow: 0 0 20px rgba(56,189,248,0.4);
 }
 
-/* DIGITS */
-.digit {
+/* CENTER DOT */
+.center-dot {
+    width: 8px;
+    height: 8px;
+    background: #38bdf8;
+    border-radius: 50%;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 32px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
+/* HAND BASE STYLE */
+.hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom;
+    transform: translateX(-50%) rotate(0deg);
+    border-radius: 4px;
+}
+
+/* HOUR HAND */
+.hour {
+    width: 4px;
+    height: 22px;
+    background: #ffffff;
+}
+
+/* MINUTE HAND */
+.minute {
+    width: 3px;
+    height: 30px;
+    background: #94a3b8;
+}
+
+/* SECOND HAND */
+.second {
+    width: 2px;
+    height: 36px;
+    background: #ef4444;
+}
+
+/* INFO TEXT */
+.clock-info {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+}
 
-    transition: transform 0.35s ease, opacity 0.35s ease;
+#day-display {
+    font-size: 14px;
+    font-weight: 600;
     color: #38bdf8;
 }
 
-.colon {
-    display: flex;
-    align-items: center;
-    height: 32px;
-    color: #64748b;
+#date-display {
+    font-size: 13px;
+    color: #94a3b8;
 }
 
-.seconds-digit {
-    color: #ef4444;
+#digital-time {
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 4px;
+    color: #ffffff;
 }

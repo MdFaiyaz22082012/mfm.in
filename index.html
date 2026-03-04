@@ -19,15 +19,21 @@
 <!-- ================= NAVBAR ================= -->
 <nav>
     <div class="live-datetime-widget">
-        <div class="date-section" id="date-display"></div>
 
-        <div class="time-wrapper">
-            <span class="label">TIME</span>
-            <!-- IMPORTANT: EMPTY CLOCK CONTAINER -->
-            <div class="time-display" id="clock"></div>
-        </div>
+    <div class="analog-clock">
+        <div class="hand hour" id="hour-hand"></div>
+        <div class="hand minute" id="minute-hand"></div>
+        <div class="hand second" id="second-hand"></div>
+        <div class="center-dot"></div>
     </div>
 
+    <div class="clock-info">
+        <div id="day-display"></div>
+        <div id="date-display"></div>
+        <div id="digital-time"></div>
+    </div>
+
+</div>
     <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -64,125 +70,46 @@
 <!-- ================= SCRIPT ================= -->
 <script>
 
-const clockContainer = document.getElementById("clock");
-let currentTime = "";
-
-/* Format date */
-function updateDate() {
-    const now = new Date();
-    const day = String(now.getDate()).padStart(2, "0");
-    const month = String(now.getMonth() + 1).padStart(2, "0");
-    const year = now.getFullYear();
-    document.getElementById("date-display").textContent = `${day}-${month}-${year}`;
-}
-
-/* Create digit box */
-function createDigitBox(value, isSeconds = false) {
-    const box = document.createElement("div");
-    box.className = "digit-box";
-
-    const digit = document.createElement("div");
-    digit.className = "digit";
-    digit.textContent = value;
-
-    if (isSeconds) digit.classList.add("seconds-digit");
-
-    box.appendChild(digit);
-    return box;
-}
-
-/* Animate digit change */
-function animateDigit(box, newValue, isSeconds = false) {
-    const oldDigit = box.querySelector(".digit");
-
-    if (oldDigit.textContent === newValue) return;
-
-    const newDigit = document.createElement("div");
-    newDigit.className = "digit";
-    newDigit.textContent = newValue;
-
-    if (isSeconds) newDigit.classList.add("seconds-digit");
-
-    newDigit.style.transform = "translateY(100%)";
-    box.appendChild(newDigit);
-
-    requestAnimationFrame(() => {
-        oldDigit.style.transform = "translateY(-100%)";
-        oldDigit.style.opacity = "0";
-        newDigit.style.transform = "translateY(0)";
-    });
-
-    setTimeout(() => {
-        box.removeChild(oldDigit);
-    }, 350);
-}
-
-/* Build clock */
-function buildClock(timeString) {
-    clockContainer.innerHTML = "";
-
-    for (let i = 0; i < timeString.length; i++) {
-        const char = timeString[i];
-
-        if (char === ":") {
-            const colon = document.createElement("span");
-            colon.className = "colon";
-            colon.textContent = ":";
-            clockContainer.appendChild(colon);
-        } else {
-            const isSeconds = i >= 6;
-            clockContainer.appendChild(createDigitBox(char, isSeconds));
-        }
-    }
-}
-
-/* Update clock */
 function updateClock() {
     const now = new Date();
 
-    const hours = String(now.getHours()).padStart(2, "0");
-    const minutes = String(now.getMinutes()).padStart(2, "0");
-    const seconds = String(now.getSeconds()).padStart(2, "0");
+    const seconds = now.getSeconds();
+    const minutes = now.getMinutes();
+    const hours = now.getHours();
 
-    const newTime = `${hours}:${minutes}:${seconds}`;
+    const secondDeg = seconds * 6;
+    const minuteDeg = minutes * 6 + seconds * 0.1;
+    const hourDeg = (hours % 12) * 30 + minutes * 0.5;
 
-    if (!currentTime) {
-        buildClock(newTime);
-        currentTime = newTime;
-        return;
-    }
+    document.getElementById("second-hand").style.transform =
+        `translateX(-50%) rotate(${secondDeg}deg)`;
 
-    const boxes = clockContainer.querySelectorAll(".digit-box");
-    let index = 0;
+    document.getElementById("minute-hand").style.transform =
+        `translateX(-50%) rotate(${minuteDeg}deg)`;
 
-    for (let i = 0; i < newTime.length; i++) {
-        if (newTime[i] !== ":") {
-            const isSeconds = i >= 6;
-            animateDigit(boxes[index], newTime[i], isSeconds);
-            index++;
-        }
-    }
+    document.getElementById("hour-hand").style.transform =
+        `translateX(-50%) rotate(${hourDeg}deg)`;
 
-    currentTime = newTime;
+    const dayOptions = { weekday: 'long' };
+    const dateOptions = { day: '2-digit', month: 'long', year: 'numeric' };
+
+    document.getElementById("day-display").textContent =
+        now.toLocaleDateString('en-US', dayOptions);
+
+    document.getElementById("date-display").textContent =
+        now.toLocaleDateString('en-US', dateOptions);
+
+    const digitalTime =
+        String(hours).padStart(2, "0") + ":" +
+        String(minutes).padStart(2, "0") + ":" +
+        String(seconds).padStart(2, "0");
+
+    document.getElementById("digital-time").textContent = digitalTime;
 }
 
-/* Start clock */
-function startClock() {
-    updateDate();
-    updateClock();
-
-    const now = new Date();
-    const delay = 1000 - now.getMilliseconds();
-
-    setTimeout(() => {
-        updateClock();
-        setInterval(updateClock, 1000);
-    }, delay);
-}
-
-startClock();
+setInterval(updateClock, 1000);
+updateClock();
 
 </script>
-
 </body>
 </html>
