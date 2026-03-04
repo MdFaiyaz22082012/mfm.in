@@ -4,72 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css?v=2.0">
+    <link rel="stylesheet" href="style.css?v=3.0">
     <title>Md. Faiyaz</title>
 </head>
 <body>
 
-<!-- ================= LOADER ================= -->
-<div id="loader" onclick="enterSite()">
-    <h1 class="loader-text">FAIYAZ</h1>
-    <div class="experience-btn">EXPERIENCE</div>
-    <audio id="introSound" src="intro.mp3"></audio>
-</div>
-
-<!-- ================= NAVBAR ================= -->
 <nav>
     <div class="live-datetime-widget">
 
-    <div class="analog-clock">
-        <div class="hand hour" id="hour-hand"></div>
-        <div class="hand minute" id="minute-hand"></div>
-        <div class="hand second" id="second-hand"></div>
-        <div class="center-dot"></div>
+        <div class="analog-clock">
+            <div class="hand hour" id="hour-hand"></div>
+            <div class="hand minute" id="minute-hand"></div>
+            <div class="hand second" id="second-hand"></div>
+            <div class="center-dot"></div>
+        </div>
+
+        <div class="clock-info">
+            <div id="day-display"></div>
+            <div id="date-display"></div>
+            <div id="digital-time"></div>
+        </div>
+
     </div>
 
-    <div class="clock-info">
-        <div id="day-display"></div>
-        <div id="date-display"></div>
-        <div id="digital-time"></div>
-    </div>
-
-</div>
     <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="education.html">Education</a>
-        <a href="career.html">Career</a>
-        <a href="ink.html">Ink & Intellect</a>
-        <a href="contact.html">Contact</a>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Education</a>
+        <a href="#">Career</a>
+        <a href="#">Ink & Intellect</a>
+        <a href="#">Contact</a>
     </div>
 </nav>
 
-<!-- ================= MAIN CONTENT ================= -->
 <div class="container">
-    <div class="education-layout">
-        <img src="profile.jpeg" alt="Muhammad Faiyaz Mia" class="school-image">
-
-        <div class="bio-text">
-            <h1>Muhammad Faiyaz</h1>
-            <div class="subtitle">Class IX Student — Calcutta, India</div>
-            <p><em>Building foundations in science, systems, and long-term thinking.</em></p>
-            <p>
-                I am a 14-year-old student focused on developing strong academic 
-                foundations in science and analytical reasoning. My long-term 
-                direction lies in advanced technological and biological systems, 
-                with interests spanning robotics, artificial intelligence, and biotechnology.
-            </p>
-        </div>
-    </div>
+    <h1>Muhammad Faiyaz</h1>
+    <p>Class IX Student — Calcutta, India</p>
 </div>
 
 <footer>
     © 2026 Muhammad Faiyaz
 </footer>
 
-<!-- ================= SCRIPT ================= -->
 <script>
-
 function updateClock() {
     const now = new Date();
 
@@ -90,26 +67,21 @@ function updateClock() {
     document.getElementById("hour-hand").style.transform =
         `translateX(-50%) rotate(${hourDeg}deg)`;
 
-    const dayOptions = { weekday: 'long' };
-    const dateOptions = { day: '2-digit', month: 'long', year: 'numeric' };
-
     document.getElementById("day-display").textContent =
-        now.toLocaleDateString('en-US', dayOptions);
+        now.toLocaleDateString('en-US', { weekday: 'long' });
 
     document.getElementById("date-display").textContent =
-        now.toLocaleDateString('en-US', dateOptions);
+        now.toLocaleDateString('en-US', { day: '2-digit', month: 'long', year: 'numeric' });
 
-    const digitalTime =
+    document.getElementById("digital-time").textContent =
         String(hours).padStart(2, "0") + ":" +
         String(minutes).padStart(2, "0") + ":" +
         String(seconds).padStart(2, "0");
-
-    document.getElementById("digital-time").textContent = digitalTime;
 }
 
 setInterval(updateClock, 1000);
 updateClock();
-
 </script>
+
 </body>
 </html>
