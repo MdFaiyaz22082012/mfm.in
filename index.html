@@ -4,68 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css?v=1.2"> <title>Md. Faiyaz</title>
+    <link rel="stylesheet" href="style.css?v=2.0">
+    <title>Md. Faiyaz</title>
 </head>
 <body>
 
-    <div id="loader" onclick="enterSite()">
-        <h1 class="loader-text">FAIYAZ</h1>
-        <div class="experience-btn">EXPERIENCE</div>
-        <audio id="introSound" src="intro.mp3"></audio>
-    </div>
+<!-- ================= LOADER ================= -->
+<div id="loader" onclick="enterSite()">
+    <h1 class="loader-text">FAIYAZ</h1>
+    <div class="experience-btn">EXPERIENCE</div>
+    <audio id="introSound" src="intro.mp3"></audio>
+</div>
 
-    <nav>
-        <div class="live-datetime-widget">
-            <div class="date-section" id="date-display">04-03-2026</div>
-            <div class="time-wrapper">
-                <span class="label">TIME</span>
-                <div class="time-display">
-                    <span class="digit-box" id="h0"><span class="current-digit">0</span></span>
-                    <span class="digit-box" id="h1"><span class="current-digit">0</span></span>
-                    <span class="separator">:</span>
-                    <span class="digit-box" id="m0"><span class="current-digit">0</span></span>
-                    <span class="digit-box" id="m1"><span class="current-digit">0</span></span>
-                    <span class="separator">:</span>
-                    <span class="digit-box" id="s0"><span class="current-digit">0</span></span>
-                    <span class="digit-box" id="s1"><span class="current-digit">0</span></span>
-                </div>
-            </div>
-        </div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="education.html">Education</a>
-            <a href="career.html">Career</a>
-            <a href="ink.html">Ink & Intellect</a>
-            <a href="contact.html">Contact</a>
-        </div>
-    </nav>
+<!-- ================= NAVBAR ================= -->
+<nav>
+    <div class="live-datetime-widget">
+        <div class="date-section" id="date-display"></div>
 
-    <div class="container">
-        <div class="education-layout">
-            <img src="profile.jpeg" alt="Muhammad Faiyaz Mia" class="school-image">
-
-            <div class="bio-text">
-                <h1>Muhammad Faiyaz</h1>
-                <div class="subtitle">Class IX Student — Calcutta, India</div>
-                <p><em>Building foundations in science, systems, and long-term thinking.</em></p>
-                <p>
-                    I am a 14-year-old student focused on developing strong academic 
-                    foundations in science and analytical reasoning. My long-term 
-                    direction lies in advanced technological and biological systems, 
-                    with interests spanning robotics, artificial intelligence, and biotechnology.
-                </p>
-            </div>
+        <div class="time-wrapper">
+            <span class="label">TIME</span>
+            <!-- IMPORTANT: EMPTY CLOCK CONTAINER -->
+            <div class="time-display" id="clock"></div>
         </div>
     </div>
 
-    <footer>
-        © 2026 Muhammad Faiyaz
-    </footer>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="education.html">Education</a>
+        <a href="career.html">Career</a>
+        <a href="ink.html">Ink & Intellect</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
 
-   <script>
+<!-- ================= MAIN CONTENT ================= -->
+<div class="container">
+    <div class="education-layout">
+        <img src="profile.jpeg" alt="Muhammad Faiyaz Mia" class="school-image">
+
+        <div class="bio-text">
+            <h1>Muhammad Faiyaz</h1>
+            <div class="subtitle">Class IX Student — Calcutta, India</div>
+            <p><em>Building foundations in science, systems, and long-term thinking.</em></p>
+            <p>
+                I am a 14-year-old student focused on developing strong academic 
+                foundations in science and analytical reasoning. My long-term 
+                direction lies in advanced technological and biological systems, 
+                with interests spanning robotics, artificial intelligence, and biotechnology.
+            </p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    © 2026 Muhammad Faiyaz
+</footer>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+
 const clockContainer = document.getElementById("clock");
 let currentTime = "";
+
+/* Format date */
+function updateDate() {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, "0");
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const year = now.getFullYear();
+    document.getElementById("date-display").textContent = `${day}-${month}-${year}`;
+}
 
 /* Create digit box */
 function createDigitBox(value, isSeconds = false) {
@@ -76,9 +85,7 @@ function createDigitBox(value, isSeconds = false) {
     digit.className = "digit";
     digit.textContent = value;
 
-    if (isSeconds) {
-        digit.classList.add("seconds-digit");
-    }
+    if (isSeconds) digit.classList.add("seconds-digit");
 
     box.appendChild(digit);
     return box;
@@ -94,9 +101,7 @@ function animateDigit(box, newValue, isSeconds = false) {
     newDigit.className = "digit";
     newDigit.textContent = newValue;
 
-    if (isSeconds) {
-        newDigit.classList.add("seconds-digit");
-    }
+    if (isSeconds) newDigit.classList.add("seconds-digit");
 
     newDigit.style.transform = "translateY(100%)";
     box.appendChild(newDigit);
@@ -104,7 +109,6 @@ function animateDigit(box, newValue, isSeconds = false) {
     requestAnimationFrame(() => {
         oldDigit.style.transform = "translateY(-100%)";
         oldDigit.style.opacity = "0";
-
         newDigit.style.transform = "translateY(0)";
     });
 
@@ -113,7 +117,7 @@ function animateDigit(box, newValue, isSeconds = false) {
     }, 350);
 }
 
-/* Build clock structure */
+/* Build clock */
 function buildClock(timeString) {
     clockContainer.innerHTML = "";
 
@@ -132,7 +136,7 @@ function buildClock(timeString) {
     }
 }
 
-/* Update time */
+/* Update clock */
 function updateClock() {
     const now = new Date();
 
@@ -162,9 +166,11 @@ function updateClock() {
     currentTime = newTime;
 }
 
-/* Precise start */
+/* Start clock */
 function startClock() {
+    updateDate();
     updateClock();
+
     const now = new Date();
     const delay = 1000 - now.getMilliseconds();
 
@@ -175,6 +181,8 @@ function startClock() {
 }
 
 startClock();
+
 </script>
+
 </body>
 </html>
