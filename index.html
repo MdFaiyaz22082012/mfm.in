@@ -63,60 +63,118 @@
         © 2026 Muhammad Faiyaz
     </footer>
 
-    <script>
-        function enterSite() {
-            const sound = document.getElementById("introSound");
-            if (sound) sound.play();
-            setTimeout(() => {
-                document.getElementById("loader").classList.add("fade-out");
-            }, 300); // Shorter delay for a snappier tech feel
-        }
+   <script>
+const clockContainer = document.getElementById("clock");
+let currentTime = "";
 
-        function animateDigit(id, newValue) {
-            const container = document.getElementById(id);
-            if (!container) return;
-            const current = container.querySelector('.current-digit');
-            
-            if (current && current.innerText !== newValue) {
-                const newDigit = document.createElement('span');
-                newDigit.className = 'new-digit';
-                newDigit.innerText = newValue;
-                
-                container.appendChild(newDigit);
-                void container.offsetWidth; 
-                
-                newDigit.style.top = '0';
-                current.style.top = '100%'; 
-                
-                setTimeout(() => {
-                    current.remove();
-                    newDigit.className = 'current-digit';
-                    newDigit.style.position = 'relative';
-                }, 400);
-            }
-        }
+/* Create digit box */
+function createDigitBox(value, isSeconds = false) {
+    const box = document.createElement("div");
+    box.className = "digit-box";
 
-        function updateClock() {
-            const now = new Date();
-            const dd = String(now.getDate()).padStart(2, '0');
-            const mm = String(now.getMonth() + 1).padStart(2, '0');
-            const yyyy = now.getFullYear();
-            document.getElementById('date-display').innerText = `${dd}-${mm}-${yyyy}`;
-            
-            const h = String(now.getHours()).padStart(2, '0');
-            const m = String(now.getMinutes()).padStart(2, '0');
-            const s = String(now.getSeconds()).padStart(2, '0');
-            
-            animateDigit('h0', h[0]);
-            animateDigit('h1', h[1]);
-            animateDigit('m0', m[0]);
-            animateDigit('m1', m[1]);
-            animateDigit('s0', s[0]);
-            animateDigit('s1', s[1]);
-        }
+    const digit = document.createElement("div");
+    digit.className = "digit";
+    digit.textContent = value;
 
+    if (isSeconds) {
+        digit.classList.add("seconds-digit");
+    }
+
+    box.appendChild(digit);
+    return box;
+}
+
+/* Animate digit change */
+function animateDigit(box, newValue, isSeconds = false) {
+    const oldDigit = box.querySelector(".digit");
+
+    if (oldDigit.textContent === newValue) return;
+
+    const newDigit = document.createElement("div");
+    newDigit.className = "digit";
+    newDigit.textContent = newValue;
+
+    if (isSeconds) {
+        newDigit.classList.add("seconds-digit");
+    }
+
+    newDigit.style.transform = "translateY(100%)";
+    box.appendChild(newDigit);
+
+    requestAnimationFrame(() => {
+        oldDigit.style.transform = "translateY(-100%)";
+        oldDigit.style.opacity = "0";
+
+        newDigit.style.transform = "translateY(0)";
+    });
+
+    setTimeout(() => {
+        box.removeChild(oldDigit);
+    }, 350);
+}
+
+/* Build clock structure */
+function buildClock(timeString) {
+    clockContainer.innerHTML = "";
+
+    for (let i = 0; i < timeString.length; i++) {
+        const char = timeString[i];
+
+        if (char === ":") {
+            const colon = document.createElement("span");
+            colon.className = "colon";
+            colon.textContent = ":";
+            clockContainer.appendChild(colon);
+        } else {
+            const isSeconds = i >= 6;
+            clockContainer.appendChild(createDigitBox(char, isSeconds));
+        }
+    }
+}
+
+/* Update time */
+function updateClock() {
+    const now = new Date();
+
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    const seconds = String(now.getSeconds()).padStart(2, "0");
+
+    const newTime = `${hours}:${minutes}:${seconds}`;
+
+    if (!currentTime) {
+        buildClock(newTime);
+        currentTime = newTime;
+        return;
+    }
+
+    const boxes = clockContainer.querySelectorAll(".digit-box");
+    let index = 0;
+
+    for (let i = 0; i < newTime.length; i++) {
+        if (newTime[i] !== ":") {
+            const isSeconds = i >= 6;
+            animateDigit(boxes[index], newTime[i], isSeconds);
+            index++;
+        }
+    }
+
+    currentTime = newTime;
+}
+
+/* Precise start */
+function startClock() {
+    updateClock();
+    const now = new Date();
+    const delay = 1000 - now.getMilliseconds();
+
+    setTimeout(() => {
         updateClock();
         setInterval(updateClock, 1000);
-    </script>
+    }, delay);
+}
+
+startClock();
+</script>
 </body>
 </html>
